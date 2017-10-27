@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "commonjs", // Convert import to require()
+        "target": "es5", // downlevel to ES5
+        "lib": ["es2015"],
+        "allowJs": true, //  transpile .js; do not typecheck it
+        "inlineSourceMap": true, // necessary because Jest doesn't support external sourcemaps
+        "rootDir": "src", // compile stuff from here...
+        "outDir": "out", // ...to here
+        "importHelpers": true
+    },
+    "include": [
+        "src"
+    ]
+}

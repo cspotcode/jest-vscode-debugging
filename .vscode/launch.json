@@ -1,0 +1,41 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+
+        /*
+         * Conventional Jest invocation; transpile code via jest loaders
+         */
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Normal Jest invocation",
+            "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
+            "args": [
+                "--runInBand", // only necessary for outdated versions of jest (?); prevents process forking
+                "-c",
+                "jest-normal.json"
+            ]
+        },
+
+        /*
+         * Pre-compile code, then run Jest against the generated code
+         */
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Jest after precompiling",
+            // Compile first
+            "preLaunchTask": "build",
+            "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
+            "args": [
+                "--runInBand", // only necessary for outdated versions of jest (?); prevents process forking
+                "-c",
+                "jest-precompile.json"
+            ],
+            // Tell VSCode that these files are generated and have associated source code elsewhere
+            "outFiles": [
+                "${workspaceRoot}/out/**/*"
+            ]
+        }
+    ]
+}
